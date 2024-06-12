@@ -1,18 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button';
-export default withPageAuthRequired(function Vendor() {
+export default function Vendor() {
   const [logs, setLogs] = useState([]);
   const [selectedLog, setSelectedLog] = useState('');
   const [status, setStatus] = useState('');
-  const { isAuthenticated, isLoading } = useKindeBrowserClient();
-  const router = useRouter()
-  if(!isAuthenticated){
-    router.push('/api/auth/login?post_login_redirect_url=/vendor')
-  }
   useEffect(() => {
     // Fetch communication logs
     const fetchLogs = async () => {
@@ -63,4 +56,3 @@ export default withPageAuthRequired(function Vendor() {
     </div>
   );
 }
-)

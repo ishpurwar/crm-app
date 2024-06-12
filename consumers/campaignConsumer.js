@@ -1,5 +1,5 @@
 const { connectToDatabase } = require('../lib/mongodb');
-const CommunicationLog = require('../models/CommunicationLog');
+const CommunicationLog = require('./models/CommunicationLog');
 const { connectRabbitMQ } = require('../lib/raqbbitmq');
 
 async function consumeCampaigns(msg) {

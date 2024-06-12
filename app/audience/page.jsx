@@ -12,11 +12,6 @@ function Audience() {
   const [totalSpends, setTotalSpends] = useState('');
   const [lastVisit, setLastVisit] = useState('');
   const [visitCount, setVisitCount] = useState('');
-  const { isAuthenticated, isLoading } = useKindeBrowserClient();
-  const router = useRouter()
-  if(!isAuthenticated){
-    router.push('/api/auth/login')
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
