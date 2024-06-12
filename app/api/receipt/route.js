@@ -1,5 +1,5 @@
 import { connectToDatabase } from "@/lib/mongodb";
-import CommunicationLog from "../../models/CommunicationLog";
+import CommunicationLog from "@/models/CommunicationLog";
 
 export const POST = async (request) => {
   try {
