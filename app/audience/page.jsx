@@ -4,14 +4,19 @@ import axios from 'axios';
 import { Input } from '@/components/ui/input';
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useRouter } from 'next/navigation'
 function Audience() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [totalSpends, setTotalSpends] = useState('');
   const [lastVisit, setLastVisit] = useState('');
   const [visitCount, setVisitCount] = useState('');
-
+  const { isAuthenticated, isLoading } = useKindeBrowserClient();
+  const router = useRouter()
+  if(!isAuthenticated){
+    router.push('/api/auth/login')
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -81,4 +86,4 @@ function Audience() {
   );
 }
 
-export default  withPageAuthRequired(Audience);
+export default  Audience;

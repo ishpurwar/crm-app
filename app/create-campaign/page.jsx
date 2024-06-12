@@ -15,14 +15,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
-
-export default withPageAuthRequired(function CreateCampaign() {
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import { useRouter } from 'next/navigation'
+export default function CreateCampaign() {
+  const { isAuthenticated, isLoading } = useKindeBrowserClient();
   const [rules, setRules] = useState([]);
   const [newRule, setNewRule] = useState({ field: '', operator: '', value: '' });
   const [message, setMessage] = useState('');
   const [audienceSize, setAudienceSize] = useState(null);
-
+  const router = useRouter()
+  if(!isAuthenticated){
+    router.push('/api/auth/login?post_login_redirect_url=/create-campaign')
+  }
   const handleAddRule = () => {
     setRules([...rules, { ...newRule }]);
     setNewRule({ field: '', operator: '', value: '' });
@@ -129,4 +133,3 @@ export default withPageAuthRequired(function CreateCampaign() {
     </div>
   );
 }
-)

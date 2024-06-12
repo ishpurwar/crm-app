@@ -40,7 +40,10 @@ export const POST = async (request) => {
 export const GET = async () => {
   try {
     await connectToDatabase();
+    console.log('connected to DB');
+
     const logs = await CommunicationLog.find({});
+    console.log(logs)
     return new Response(JSON.stringify(logs), { status: 200 });
   } catch (error) {
     console.error('Error getting logs:', error);

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const CommunicationLogSchema = new mongoose.Schema({
   audienceId: {
@@ -18,4 +18,6 @@ const CommunicationLogSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('CommunicationLog', CommunicationLogSchema);
+const CommunicationLog = mongoose.models.CommunicationLog || mongoose.model('CommunicationLog', CommunicationLogSchema);
+
+export default CommunicationLog;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const AudienceSchema = new mongoose.Schema({
   rules: [
     {
@@ -13,4 +13,6 @@ const AudienceSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Audience', AudienceSchema);
+const Audience = mongoose.models.Audience || mongoose.model('Audience', AudienceSchema);
+
+export default Audience;
